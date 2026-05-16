@@ -15,8 +15,8 @@ _As a [user role], I want [feature/goal], so that [reason]._
 .............
 
   
-# Admin User stories
+## Admin User stories
 
-# Patient User stories
+## Patient User stories
 
-# Doctor User stories
+## Doctor User stories
