@@ -131,7 +131,9 @@ The schema includes tables for:
 -------------------------
 --Section-Two----
 
-## Overview
+## MongoDB Collection Design
+
+### Overview
 This document describes the MongoDB collection design for the Smart Clinic Management System.
 
 The schema includes collections for:
