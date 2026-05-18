@@ -1,5 +1,6 @@
 package com.project.back_end.models;
 
+//This is a admin.java model file
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
