@@ -1,58 +1,156 @@
 /*
-  Import the openModal function to handle showing login popups/modals
-  Import the base API URL from the config file
-  Define constants for the admin and doctor login API endpoints using the base URL
-
-  Use the window.onload event to ensure DOM elements are available after page load
-  Inside this function:
-    - Select the "adminLogin" and "doctorLogin" buttons using getElementById
-    - If the admin login button exists:
-        - Add a click event listener that calls openModal('adminLogin') to show the admin login modal
-    - If the doctor login button exists:
-        - Add a click event listener that calls openModal('doctorLogin') to show the doctor login modal
-
-
-  Define a function named adminLoginHandler on the global window object
-  This function will be triggered when the admin submits their login credentials
-
-  Step 1: Get the entered username and password from the input fields
-  Step 2: Create an admin object with these credentials
-
-  Step 3: Use fetch() to send a POST request to the ADMIN_API endpoint
-    - Set method to POST
-    - Add headers with 'Content-Type: application/json'
-    - Convert the admin object to JSON and send in the body
-
-  Step 4: If the response is successful:
-    - Parse the JSON response to get the token
-    - Store the token in localStorage
-    - Call selectRole('admin') to proceed with admin-specific behavior
-
-  Step 5: If login fails or credentials are invalid:
-    - Show an alert with an error message
-
-  Step 6: Wrap everything in a try-catch to handle network or server errors
-    - Show a generic error message if something goes wrong
-
-
-  Define a function named doctorLoginHandler on the global window object
-  This function will be triggered when a doctor submits their login credentials
-
-  Step 1: Get the entered email and password from the input fields
-  Step 2: Create a doctor object with these credentials
-
-  Step 3: Use fetch() to send a POST request to the DOCTOR_API endpoint
-    - Include headers and request body similar to admin login
-
-  Step 4: If login is successful:
-    - Parse the JSON response to get the token
-    - Store the token in localStorage
-    - Call selectRole('doctor') to proceed with doctor-specific behavior
-
-  Step 5: If login fails:
-    - Show an alert for invalid credentials
-
-  Step 6: Wrap in a try-catch block to handle errors gracefully
-    - Log the error to the console
-    - Show a generic error message
+Import getAllAppointments to fetch appointments from the backend.
+Import createPatientRow to generate a table row for each appointment.
 */
+import { getAllAppointments } from "../services/appointmentService.js";
+import { createPatientRow } from "../components/createPatientRow.js";
+
+/*
+Get the table body where appointment rows will be rendered.
+*/
+const tableBody = document.querySelector("#appointments-table-body");
+
+/*
+Initialize selectedDate with today's date in YYYY-MM-DD format.
+*/
+let selectedDate = new Date().toISOString().split("T")[0];
+
+/*
+Retrieve the authentication token from localStorage.
+*/
+const token = localStorage.getItem("token");
+
+/*
+Initialize patientName as null.
+This value is used as an optional filter when searching appointments.
+*/
+let patientName = null;
+
+/*
+Search bar event listener:
+- Triggered whenever the user types in the search field.
+- Updates patientName based on the input value.
+- Reloads appointments using the updated filter.
+*/
+document.querySelector("#search-bar").addEventListener("input", (e) => {
+const value = e.target.value.trim();
+
+patientName = value !== "" ? value : null;
+
+loadAppointments();
+});
+
+/*
+"Today" button event listener:
+- Resets selectedDate to today's date.
+- Updates the date picker value.
+- Reloads today's appointments.
+*/
+document.querySelector("#today-btn").addEventListener("click", () => {
+selectedDate = new Date().toISOString().split("T")[0];
+
+document.querySelector("#date-picker").value = selectedDate;
+
+loadAppointments();
+});
+
+/*
+Date picker event listener:
+- Updates selectedDate whenever the user selects a new date.
+- Reloads appointments for the selected date.
+*/
+document.querySelector("#date-picker").addEventListener("change", (e) => {
+selectedDate = e.target.value;
+
+loadAppointments();
+});
+
+/*
+Function: loadAppointments
+Purpose:
+Fetch and display appointments based on:
+- selectedDate
+- optional patientName filter
+*/
+async function loadAppointments() {
+try {
+/*
+Step 1:
+Fetch appointments from the backend.
+*/
+const appointments = await getAllAppointments(
+selectedDate,
+patientName,
+token
+);
+
+/*
+Step 2:
+Clear existing table rows before rendering new data.
+*/
+tableBody.innerHTML = "";
+
+/*
+Step 3:
+Display a fallback message if no appointments are found.
+*/
+if (!appointments || appointments.length === 0) {
+tableBody.innerHTML = `
+<tr>
+<td colspan="5" class="text-center py-4">
+No appointments found for this date.
+</td>
+</tr>
+`;
+
+return;
+}
+
+/*
+Step 4:
+Loop through appointments and render rows.
+*/
+appointments.forEach((appointment) => {
+const patient = {
+id: appointment.patient?.id,
+name: appointment.patient?.name,
+phone: appointment.patient?.phone,
+email: appointment.patient?.email,
+};
+
+/*
+Generate a table row using createPatientRow.
+*/
+const row = createPatientRow(patient, appointment);
+
+/*
+Append the generated row to the table body.
+*/
+tableBody.appendChild(row);
+});
+} catch (error) {
+console.error("Error loading appointments:", error);
+
+/*
+Step 5:
+Display an error message if fetching fails.
+*/
+tableBody.innerHTML = `
+<tr>
+<td colspan="5" class="text-center py-4 text-danger">
+Error loading appointments. Try again later.
+</td>
+</tr>
+`;
+}
+}
+
+/*
+DOMContentLoaded event:
+- Initializes the page layout.
+- Loads today's appointments by default.
+*/
+document.addEventListener("DOMContentLoaded", () => {
+renderContent();
+loadAppointments();
+});
