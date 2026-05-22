@@ -1,43 +1,34 @@
 package com.project.back_end.models;
 
-//This is a admin.java model file
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Admin {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-    @NotNull(message = "Username cannot be null")
+
+    @NotNull(message = "username cannot be null")
     private String username;
-    @NotNull
+
+    @NotNull(message = "password cannot be null")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    // Constructors
+    public Admin() {}
 
-// 4. Constructor(s):
-//    - A no-argument constructor is implicitly provided, required by JPA for entity creation.
-    public Admin() {
-        super();
-    }
-
-//    - A parameterized constructor can be added as needed.
-    public Admin(Long id, String username, String password) {
-        this.id = id;
+    public Admin(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-
-// 5. Getters and Setters:
-//    - Standard getter and setter methods are provided for accessing and modifying the fields.
-
+    // Getters and Setters
     public Long getId() {
         return id;
     }
