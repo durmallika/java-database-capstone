@@ -1,45 +1,37 @@
 package com.project.back_end.mvc;
 
+import java.util.Map;
 
-import com.project.back_end.services.Service;
+import com.project.back_end.services.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 @Controller
 public class DashboardController {
 
+    @Autowired
+    AppService service;
 
-        @Autowired
-        private Service service;
+    @GetMapping("/adminDashboard/{token}")
+    public String adminDashboard(@PathVariable String token) {
+        Map<String, String> map = service.validateToken(token, "admin").getBody();
+        System.out.println("map" + map);
+        if (map.isEmpty()) {
+            return "admin/adminDashboard";
+        }
+        return "redirect:http://localhost:8080";
+    }
 
-        // Admin Dashboard Route
-        @GetMapping("/adminDashboard/{token}")
-        public String adminDashboard(@PathVariable String token) {
-
-            String validationResult = service.validateToken(token, "admin");
-
-            if (validationResult == null || validationResult.isEmpty()) {
-                return "admin/adminDashboard";
-            }
-
-            return "redirect:/";
+    @GetMapping("/doctorDashboard/{token}")
+    public String doctorDashboard(@PathVariable String token) {
+        Map<String, String> map = service.validateToken(token, "doctor").getBody();
+        System.out.println("map" + map);
+        if (map.isEmpty()) {
+            return "doctor/doctorDashboard";
         }
 
-        // Doctor Dashboard Route
-        @GetMapping("/doctorDashboard/{token}")
-        public String doctorDashboard(@PathVariable String token) {
-
-            String validationResult = service.validateToken(token, "doctor");
-
-            if (validationResult == null || validationResult.isEmpty()) {
-                return "doctor/doctorDashboard";
-            }
-
-            return "redirect:/";
-        }
-
-
+        return "redirect:http://localhost:8080";
+    }
 }
