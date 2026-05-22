@@ -14,49 +14,33 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
-    @NotNull
+    @NotNull(message = "Doctor is required")
     private Doctor doctor;
+
     @ManyToOne
-    @NotNull
+    @NotNull(message = "Patient is required")
     private Patient patient;
-    @Future
+
+    @NotNull(message = "Appointment time is required")
+    @Future(message = "Appointment time must be in the future")
     private LocalDateTime appointmentTime;
+
+    @NotNull(message = "Status is required")
     private int status; // 0 = Scheduled, 1 = Completed
-    @Transient
-    public LocalDateTime getEndTime() {
-        return appointmentTime.plusHours(1);
-    }
 
-    // 7. 'getAppointmentDate' method:
-    private LocalDate getAppointmentDate() {
-        return appointmentTime.toLocalDate();
-    }
-    // 8. 'getAppointmentTimeOnly' method:
-    private LocalTime getAppointmentTimeOnly() {
-        return LocalTime.now();
-    }
+    // Constructors
+    public Appointment() {}
 
-// 9. Constructor(s):
-//    - A no-argument constructor is implicitly provided by JPA for entity creation.
-
-    public Appointment() {
-        super();
-    }
-
-//    - A parameterized constructor can be added as needed to initialize fields.
-
-    public Appointment(Long id, Doctor doctor, Patient patient, LocalDateTime appointmentTime, int status) {
-        this.id = id;
+    public Appointment(Doctor doctor, Patient patient, LocalDateTime appointmentTime, int status) {
         this.doctor = doctor;
         this.patient = patient;
         this.appointmentTime = appointmentTime;
         this.status = status;
     }
 
-// 10. Getters and Setters:
-//    - Standard getter and setter methods are provided for accessing and modifying the fields: id, doctor, patient, appointmentTime, status, etc.
-
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -96,5 +80,20 @@ public class Appointment {
     public void setStatus(int status) {
         this.status = status;
     }
-}
 
+    // Helper Methods
+    @Transient
+    public LocalDateTime getEndTime() {
+        return this.appointmentTime.plusHours(1);
+    }
+
+    @Transient
+    public LocalDate getAppointmentDate() {
+        return this.appointmentTime.toLocalDate();
+    }
+
+    @Transient
+    public LocalTime getAppointmentTimeOnly() {
+        return this.appointmentTime.toLocalTime();
+    }
+}
