@@ -1,156 +1,70 @@
-/*
-Import getAllAppointments to fetch appointments from the backend.
-Import createPatientRow to generate a table row for each appointment.
-*/
-import { getAllAppointments } from "../services/appointmentService.js";
-import { createPatientRow } from "../components/createPatientRow.js";
+import { openModal } from './modal.js';
+import { BASE_API_URL } from './config.js';
 
-/*
-Get the table body where appointment rows will be rendered.
-*/
-const tableBody = document.querySelector("#appointments-table-body");
+const ADMIN_API = `${BASE_API_URL}/admin/login`;
+const DOCTOR_API = `${BASE_API_URL}/doctor/login`;
 
-/*
-Initialize selectedDate with today's date in YYYY-MM-DD format.
-*/
-let selectedDate = new Date().toISOString().split("T")[0];
+window.onload = () => {
+  const adminLoginBtn = document.getElementById('adminLogin');
+  const doctorLoginBtn = document.getElementById('doctorLogin');
 
-/*
-Retrieve the authentication token from localStorage.
-*/
-const token = localStorage.getItem("token");
+  if (adminLoginBtn) {
+    adminLoginBtn.addEventListener('click', () => openModal('adminLogin'));
+  }
 
-/*
-Initialize patientName as null.
-This value is used as an optional filter when searching appointments.
-*/
-let patientName = null;
-
-/*
-Search bar event listener:
-- Triggered whenever the user types in the search field.
-- Updates patientName based on the input value.
-- Reloads appointments using the updated filter.
-*/
-document.querySelector("#search-bar").addEventListener("input", (e) => {
-const value = e.target.value.trim();
-
-patientName = value !== "" ? value : null;
-
-loadAppointments();
-});
-
-/*
-"Today" button event listener:
-- Resets selectedDate to today's date.
-- Updates the date picker value.
-- Reloads today's appointments.
-*/
-document.querySelector("#today-btn").addEventListener("click", () => {
-selectedDate = new Date().toISOString().split("T")[0];
-
-document.querySelector("#date-picker").value = selectedDate;
-
-loadAppointments();
-});
-
-/*
-Date picker event listener:
-- Updates selectedDate whenever the user selects a new date.
-- Reloads appointments for the selected date.
-*/
-document.querySelector("#date-picker").addEventListener("change", (e) => {
-selectedDate = e.target.value;
-
-loadAppointments();
-});
-
-/*
-Function: loadAppointments
-Purpose:
-Fetch and display appointments based on:
-- selectedDate
-- optional patientName filter
-*/
-async function loadAppointments() {
-try {
-/*
-Step 1:
-Fetch appointments from the backend.
-*/
-const appointments = await getAllAppointments(
-selectedDate,
-patientName,
-token
-);
-
-/*
-Step 2:
-Clear existing table rows before rendering new data.
-*/
-tableBody.innerHTML = "";
-
-/*
-Step 3:
-Display a fallback message if no appointments are found.
-*/
-if (!appointments || appointments.length === 0) {
-tableBody.innerHTML = `
-<tr>
-<td colspan="5" class="text-center py-4">
-No appointments found for this date.
-</td>
-</tr>
-`;
-
-return;
-}
-
-/*
-Step 4:
-Loop through appointments and render rows.
-*/
-appointments.forEach((appointment) => {
-const patient = {
-id: appointment.patient?.id,
-name: appointment.patient?.name,
-phone: appointment.patient?.phone,
-email: appointment.patient?.email,
+  if (doctorLoginBtn) {
+    doctorLoginBtn.addEventListener('click', () => openModal('doctorLogin'));
+  }
 };
 
-/*
-Generate a table row using createPatientRow.
-*/
-const row = createPatientRow(patient, appointment);
+window.adminLoginHandler = async () => {
+  const username = document.getElementById('adminUsername').value;
+  const password = document.getElementById('adminPassword').value;
 
-/*
-Append the generated row to the table body.
-*/
-tableBody.appendChild(row);
-});
-} catch (error) {
-console.error("Error loading appointments:", error);
+  const admin = { username, password };
 
-/*
-Step 5:
-Display an error message if fetching fails.
-*/
-tableBody.innerHTML = `
-<tr>
-<td colspan="5" class="text-center py-4 text-danger">
-Error loading appointments. Try again later.
-</td>
-</tr>
-`;
-}
-}
+  try {
+    const response = await fetch(ADMIN_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(admin),
+    });
 
-/*
-DOMContentLoaded event:
-- Initializes the page layout.
-- Loads today's appointments by default.
-*/
-document.addEventListener("DOMContentLoaded", () => {
-renderContent();
-loadAppointments();
-});
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('token', data.token);
+      selectRole('admin');
+    } else {
+      alert('Invalid admin credentials. Please try again.');
+    }
+  } catch (error) {
+    console.error('Admin login error:', error);
+    alert('An error occurred during admin login. Please try again later.');
+  }
+};
+
+window.doctorLoginHandler = async () => {
+  const email = document.getElementById('doctorEmail').value;
+  const password = document.getElementById('doctorPassword').value;
+
+  const doctor = { email, password };
+
+  try {
+    const response = await fetch(DOCTOR_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(doctor),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      localStorage.setItem('token', data.token);
+      selectRole('doctor');
+    } else {
+      alert('Invalid doctor credentials. Please try again.');
+    }
+  } catch (error) {
+    console.error('Doctor login error:', error);
+    alert('An error occurred during doctor login. Please try again later.');
+  }
+};
