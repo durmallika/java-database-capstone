@@ -2,7 +2,7 @@ package com.project.back_end.mvc;
 
 import java.util.Map;
 
-import com.project.back_end.services.AppService;
+import com.project.back_end.services.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class DashboardController {
 
     @Autowired
-    AppService service;
+    Service service;
 
     @GetMapping("/adminDashboard/{token}")
     public String adminDashboard(@PathVariable String token) {
