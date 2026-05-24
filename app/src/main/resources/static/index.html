@@ -1,91 +1,49 @@
 <!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Character Encoding -->
-    <meta charset="UTF-8">
-
-    <!-- Responsive Design -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Page Title -->
-    <title>Select Role</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../assets/images/logo/Logo.png">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../assets/css/index.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-
-    <!-- JavaScript Files -->
-    <script src="../js/util.js" defer></script>
-    <script src="../js/render.js" defer></script>
-    <script src="../js/components/header.js" defer></script>
-    <script src="../js/components/footer.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Select Role</title>
+  <link rel="icon" href="../assets/images/logo/Logo.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/index.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="../js/util.js" defer></script>
+  <script src="../js/render.js" defer></script>
+  <script src="../js/components/header.js" defer></script>
+  <script src="../js/components/footer.js" defer></script>
 </head>
-
 <body>
+  <div class="container">
+         <!-- Header Placeholder -->
+      <div id="header"></div>
 
-<!-- Main Container -->
-<div class="container">
+      <!-- Main Content -->
+      <main>
+        <h1>Select Your Role</h1>
+        <div class="role-buttons">
+          <button id="adminBtn">Admin</button>
+          <button id="patientBtn">Patient</button>
+          <button id="doctorBtn">Doctor</button>
+        </div>
+      </main>
 
-    <!-- Wrapper -->
-    <div class="wrapper">
-
-        <!-- Header Placeholder -->
-        <div id="header"></div>
-
-        <!-- Main Section -->
-        <main>
-
-            <!-- Role Selection Section -->
-            <section class="role-selection">
-
-                <!-- Heading -->
-                <h1>Select Your Role</h1>
-
-                <!-- Role Buttons -->
-                <div class="role-buttons">
-                    <button id="admin-btn">Admin</button>
-                    <button id="patient-btn">Patient</button>
-                    <button id="doctor-btn">Doctor</button>
-                </div>
-
-            </section>
-
-        </main>
-
-        <!-- Footer Placeholder -->
-        <div id="footer"></div>
-
+      <!-- Footer Placeholder -->
+      <div id="footer"></div>
     </div>
-</div>
+  </div>
 
-<!-- Modal Structure -->
-<div id="modal-overlay" class="modal-overlay">
-
-    <div class="modal-container">
-
-        <!-- Close Modal Button -->
-        <button id="close-modal" class="close-modal">
-            &times;
-        </button>
-
-        <!-- Dynamic Modal Content -->
-        <div id="modal-content"></div>
-
+  <!-- Modal Structure -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button" id="closeModal">&times;</span>
+      <div id="modal-body">
+        <!-- Dynamic content will be injected here -->
+      </div>
     </div>
+  </div>
 
-</div>
-
-<!-- Page-Specific JavaScript Module -->
-<!-- <script type="module" src="../js/index.js" defer></script> -->
-<script type="module" src="js/services/index.js" defer></script>
-
-
+  <!-- Page-Specific Logic -->
+  <script type="module" src="../js/index.js" defer></script>
 </body>
-
 </html>

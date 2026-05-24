@@ -1,40 +1,20 @@
-/*this is the style sheet for the adminDashboard. */
-
-/* 
-Global Reset (`*`)
-*/
-
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Base HTML & Body
-   - Full height layout
-   - Standard readable font
-*/
-html,
-body {
+html, body {
   height: 100%;
   font-family: Arial, sans-serif;
 }
 
-/* Main Layout Wrapper
-   - Full screen flexible layout
-   - Stacks content vertically
-*/
 .wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Section Heading
-   - Large bold heading
-   - Strong teal color for emphasis
-*/
 h2 {
   font-size: 32px;
   font-weight: bold;
@@ -42,73 +22,176 @@ h2 {
   color: #003e3e;
 }
 
-/* Main Content Section
-   - Flexible vertical layout
-   - Background image styling
-*/
 .main-content {
   flex-grow: 1;
   padding: 40px;
-
   display: flex;
   flex-direction: column;
-
   text-align: center;
-
-  background-image: url("index.png");
+  background-image: url("../images/defineRole/defineRole.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
-/* Primary Button
-   - Bold red action button
-   - Rounded corners and readable text
-*/
+#searchBar {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 600px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  align-self: center;
+}
+
+select {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 200px;
+  align-self: center;
+}
+
 button {
   background-color: #A62B1F;
   color: white;
-
   border: none;
   border-radius: 12px;
-
   padding: 10px 20px;
   margin-top: 20px;
-
   width: 200px;
-
   cursor: pointer;
   font-size: 16px;
 }
 
-/* Button Hover Effect
-   - Maintains brand consistency
-*/
 button:hover {
   background-color: #A62B1F;
 }
 
-/* Admin Button
-   - Secondary compact action button
-*/
 .adminBtn {
   background-color: #f4f4f4;
   color: #333;
-
   font-weight: bold;
-
   width: 110px;
   padding: 10px 0;
-
   border: none;
-
   cursor: pointer;
 }
 
-/* Admin Button Hover Effect
-   - Changes text color to brand red
-*/
 .adminBtn:hover {
   color: #A62B1F;
+}
+
+#content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-body {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #000;
+}
+
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 20px;
+  }
+
+  #searchBar {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  select {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  button {
+    width: 90%;
+    margin: 20px auto 0;
+  }
+
+  #modal-body {
+    width: 90%;
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  #content {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 10px;
+  }
+
+  #searchBar, select, button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .adminBtn {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  #modal-body {
+    padding: 15px;
+  }
+
+  .close {
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+  }
 }

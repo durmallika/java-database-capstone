@@ -60,6 +60,13 @@ button {
   transition: background-color 0.3s ease;
 }
 
+/* make the buttons appear at the center of web page, */
+.button-group {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
 button:hover {
   background-color: #A62B1F;
 }
