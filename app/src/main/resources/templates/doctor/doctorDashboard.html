@@ -1,103 +1,54 @@
-<!-- doctorDashboard.html -->
 
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <!-- Meta Information -->
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <title>Doctor Dashboard</title>
+  <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
+  <!-- <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}" /> -->
+  <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
 
-    <!-- Page Title -->
-    <title>Doctor Dashboard</title>
-
-    <!-- CSS Stylesheets -->
-    <link rel="stylesheet" th:href="@{/css/adminDashboard.css}">
-    <link rel="stylesheet" th:href="@{/css/doctorDashboard.css}">
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-
-    <!-- JavaScript Files -->
-    <script th:src="@{/js/render.js}" defer></script>
-    <script th:src="@{/js/util.js}" defer></script>
-    <script th:src="@{/js/header.js}" defer></script>
-    <script th:src="@{/js/footer.js}" defer></script>
-    <script type="module" th:src="@{/js/doctorDashboard.js}" defer></script>
+  <script type="module" th:src="@{/js/render.js}" defer></script>
+  <script type="module" th:src="@{/js/util.js}" defer></script>
+  <script type="module" th:src="@{/js/components/header.js}" defer></script>
+  <script type="module" th:src="@{/js/components/footer.js}" defer></script>
+  <script type="module" th:src="@{/js/components/patientRows.js}" defer></script>
+  <script type="module" th:src="@{/js/services/patientServices.js}" defer></script>
+  <script type="module" th:src="@{/js/doctorDashboard.js}" defer></script>
 </head>
 
 <body onload="renderContent()">
-
-<!-- Main Container -->
-<div class="container">
-
-    <!-- Wrapper -->
+  <div class="container">
     <div class="wrapper">
+      <div id="header"></div>
 
-        <!-- Header Placeholder -->
-        <div id="header"></div>
+      <div class="main-content">
+        <input type="text" id="searchBar" class="searchBar" placeholder="Search patients..." />
 
-        <!-- Main Content -->
-        <div class="main-content">
-
-            <!-- Search Bar -->
-            <div class="search-container">
-                <input
-                        type="text"
-                        id="searchBar"
-                        class="searchBar"
-                        placeholder="Search Bar for custom output"
-                />
-            </div>
-
-            <!-- Filter Controls -->
-            <div class="filter-controls">
-
-                <!-- Today's Appointments Button -->
-                <button id="todayButton" class="today-btn">
-                    Today's Appointments
-                </button>
-
-                <!-- Date Picker -->
-                <input
-                        type="date"
-                        id="datePicker"
-                        class="date-picker"
-                />
-            </div>
-
-            <!-- Patient Table -->
-            <div class="table-container">
-                <table class="patient-table">
-
-                    <!-- Table Header -->
-                    <thead>
-                    <tr>
-                        <th>Patient ID</th>
-                        <th>Name</th>
-                        <th>Phone No.</th>
-                        <th>Email</th>
-                        <th>Prescription</th>
-                    </tr>
-                    </thead>
-
-                    <!-- Dynamic Table Body -->
-                    <tbody id="patientTableBody">
-                    <!-- Patient rows will be inserted dynamically -->
-                    </tbody>
-
-                </table>
-            </div>
-
+        <div class="filter-section">
+          <button id="todayButton" class="adminBtn">Today’s Appointments</button>
+          <input type="date" id="datePicker" class="datePicker" />
         </div>
+        <table id="patientTable" class="patient-table">
+          <thead>
+            <tr>
+              <th>Patient ID</th>
+              <th>Name</th>
+              <th>Phone No.</th>
+              <th>Email</th>
+              <th>Prescription</th>
+            </tr>
+          </thead>
+          <tbody id="patientTableBody">
+            <!-- Rows inserted dynamically by JS -->
+          </tbody>
+        </table>
+      </div>
 
-        <!-- Footer Placeholder -->
-        <div id="footer"></div>
-
+      <div id="footer"></div>
     </div>
-
-</div>
-
+  </div>
 </body>
-
 </html>
