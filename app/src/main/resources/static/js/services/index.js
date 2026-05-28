@@ -1,70 +1,45 @@
-import { openModal } from './modal.js';
-import { BASE_API_URL } from './config.js';
+const adminBtn = document.getElementById("adminBtn");
+const patientBtn = document.getElementById("patientBtn");
+const doctorBtn = document.getElementById("doctorBtn");
 
-const ADMIN_API = `${BASE_API_URL}/admin/login`;
-const DOCTOR_API = `${BASE_API_URL}/doctor/login`;
+const modalOverlay = document.getElementById("modalOverlay");
+const modalContent = document.getElementById("modalContent");
+const closeModal = document.getElementById("closeModal");
 
-window.onload = () => {
-  const adminLoginBtn = document.getElementById('adminLogin');
-  const doctorLoginBtn = document.getElementById('doctorLogin');
+function openModal(content) {
+  modalContent.innerHTML = content;
+  modalOverlay.classList.remove("hidden");
+}
 
-  if (adminLoginBtn) {
-    adminLoginBtn.addEventListener('click', () => openModal('adminLogin'));
+function closeModalHandler() {
+  modalOverlay.classList.add("hidden");
+}
+
+adminBtn.addEventListener("click", () => {
+  openModal(`
+    <h2>Admin Login</h2>
+    <p>Admin authentication form will appear here.</p>
+  `);
+});
+
+patientBtn.addEventListener("click", () => {
+  openModal(`
+    <h2>Patient Login</h2>
+    <p>Patient authentication form will appear here.</p>
+  `);
+});
+
+doctorBtn.addEventListener("click", () => {
+  openModal(`
+    <h2>Doctor Login</h2>
+    <p>Doctor authentication form will appear here.</p>
+  `);
+});
+
+closeModal.addEventListener("click", closeModalHandler);
+
+modalOverlay.addEventListener("click", (e) => {
+  if (e.target === modalOverlay) {
+    closeModalHandler();
   }
-
-  if (doctorLoginBtn) {
-    doctorLoginBtn.addEventListener('click', () => openModal('doctorLogin'));
-  }
-};
-
-window.adminLoginHandler = async () => {
-  const username = document.getElementById('adminUsername').value;
-  const password = document.getElementById('adminPassword').value;
-
-  const admin = { username, password };
-
-  try {
-    const response = await fetch(ADMIN_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(admin),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      localStorage.setItem('token', data.token);
-      selectRole('admin');
-    } else {
-      alert('Invalid admin credentials. Please try again.');
-    }
-  } catch (error) {
-    console.error('Admin login error:', error);
-    alert('An error occurred during admin login. Please try again later.');
-  }
-};
-
-window.doctorLoginHandler = async () => {
-  const email = document.getElementById('doctorEmail').value;
-  const password = document.getElementById('doctorPassword').value;
-
-  const doctor = { email, password };
-
-  try {
-    const response = await fetch(DOCTOR_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(doctor),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      localStorage.setItem('token', data.token);
-      selectRole('doctor');
-    } else {
-      alert('Invalid doctor credentials. Please try again.');
-    }
-  } catch (error) {
-    console.error('Doctor login error:', error);
-    alert('An error occurred during doctor login. Please try again later.');
-  }
-};
+});

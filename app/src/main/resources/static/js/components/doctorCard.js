@@ -4,10 +4,23 @@ import { deleteDoctor } from './services/doctorServices.js';
 import { getPatientData } from './services/patientServices.js';
 
 // Define the function
-export function createDoctorCard(doctor) {
-  // Create the main card container
-  const card = document.createElement("div");
-  card.classList.add("doctor-card");
+// export function createDoctorCard(doctor) {
+//   // Create the main card container
+//   const card = document.createElement("div");
+//   card.classList.add("doctor-card");
+
+
+  export function createDoctorCard(doctor) {
+    return `
+      <div class="doctor-card">
+        <h3>${doctor.name}</h3>
+        <p><strong>Specialty:</strong> ${doctor.specialty}</p>
+        <p><strong>Availability:</strong> ${doctor.availability}</p>
+        <button class="view-btn">View Profile</button>
+      </div>
+    `;
+  }
+
 
   // Fetch the user's role
   const role = localStorage.getItem("userRole");
