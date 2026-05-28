@@ -1,7 +1,7 @@
 package com.project.back_end.controllers;
 
 import com.project.back_end.models.Prescription;
-import com.project.back_end.services.Service;
+import com.project.back_end.services.AppService;
 import com.project.back_end.services.AppointmentService;
 import com.project.back_end.services.PrescriptionService;
 import jakarta.validation.Valid;
@@ -21,13 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class PrescriptionController {
 
     private final PrescriptionService prescriptionService;
-    private final Service service;
+    private final AppService service;
     private final AppointmentService appointmentService;
 
     @Autowired
     public PrescriptionController(
             PrescriptionService prescriptionService,
-            Service service,
+            AppService service,
             AppointmentService appointmentService
     ) {
         this.prescriptionService = prescriptionService;

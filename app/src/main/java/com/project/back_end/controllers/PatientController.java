@@ -2,7 +2,7 @@ package com.project.back_end.controllers;
 
 import com.project.back_end.DTO.Login;
 import com.project.back_end.models.Patient;
-import com.project.back_end.services.Service;
+import com.project.back_end.services.AppService;
 import com.project.back_end.services.PatientService;
 import jakarta.validation.Valid;
 import java.util.HashMap;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.*;
 public class PatientController {
 
     private final PatientService patientService;
-    private final Service service;
+    private final AppService service;
 
     @Autowired
-    public PatientController(PatientService patientService, Service service) {
+    public PatientController(PatientService patientService, AppService service) {
         this.patientService = patientService;
         this.service = service;
     }
@@ -101,4 +101,3 @@ public class PatientController {
         return service.filterPatient(condition, name, token);
     }
 }
-

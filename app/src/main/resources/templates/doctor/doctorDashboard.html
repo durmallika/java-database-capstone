@@ -20,35 +20,35 @@
 </head>
 
 <body onload="renderContent()">
-  <div class="container">
-    <div class="wrapper">
-      <div id="header"></div>
+<div class="container">
+  <div class="wrapper">
+    <div id="header"></div>
 
-      <div class="main-content">
-        <input type="text" id="searchBar" class="searchBar" placeholder="Search patients..." />
+    <div class="main-content">
+      <input type="text" id="searchBar" class="searchBar" placeholder="Search patients..." />
 
-        <div class="filter-section">
-          <button id="todayButton" class="adminBtn">Today’s Appointments</button>
-          <input type="date" id="datePicker" class="datePicker" />
-        </div>
-        <table id="patientTable" class="patient-table">
-          <thead>
-            <tr>
-              <th>Patient ID</th>
-              <th>Name</th>
-              <th>Phone No.</th>
-              <th>Email</th>
-              <th>Prescription</th>
-            </tr>
-          </thead>
-          <tbody id="patientTableBody">
-            <!-- Rows inserted dynamically by JS -->
-          </tbody>
-        </table>
+      <div class="filter-section">
+        <button id="todayButton" class="adminBtn">Today’s Appointments</button>
+        <input type="date" id="datePicker" class="datePicker" />
       </div>
-
-      <div id="footer"></div>
+      <table id="patientTable" class="patient-table">
+        <thead>
+        <tr>
+          <th>Patient ID</th>
+          <th>Name</th>
+          <th>Phone No.</th>
+          <th>Email</th>
+          <th>Prescription</th>
+        </tr>
+        </thead>
+        <tbody id="patientTableBody">
+        <!-- Rows inserted dynamically by JS -->
+        </tbody>
+      </table>
     </div>
+
+    <div id="footer"></div>
   </div>
+</div>
 </body>
 </html>

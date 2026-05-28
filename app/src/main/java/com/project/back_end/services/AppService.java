@@ -1,4 +1,3 @@
-
 package com.project.back_end.services;
 
 import com.project.back_end.DTO.Login;
@@ -20,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @org.springframework.stereotype.Service
-public class Service {
+public class AppService {
 
     private final TokenService tokenService;
     private final AdminRepository adminRepository;
@@ -29,8 +28,8 @@ public class Service {
     private final PatientRepository patientRepository;
     private final PatientService patientService;
 
-    public Service(TokenService tokenService, AdminRepository adminRepository, DoctorService doctorService,
-                   DoctorRepository doctorRepository, PatientRepository patientRepository, PatientService patientService) {
+    public AppService(TokenService tokenService, AdminRepository adminRepository, DoctorService doctorService,
+                      DoctorRepository doctorRepository, PatientRepository patientRepository, PatientService patientService) {
         this.tokenService = tokenService;
         this.adminRepository = adminRepository;
         this.doctorService = doctorService;

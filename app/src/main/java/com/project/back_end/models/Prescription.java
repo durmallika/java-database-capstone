@@ -1,3 +1,4 @@
+
 package com.project.back_end.models;
 
 import org.springframework.data.annotation.Id;
@@ -89,4 +90,3 @@ public class Prescription {
         this.doctorNotes = doctorNotes;
     }
 }
-

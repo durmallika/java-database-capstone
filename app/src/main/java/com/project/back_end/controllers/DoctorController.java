@@ -1,9 +1,8 @@
-
 package com.project.back_end.controllers;
 
 import com.project.back_end.DTO.Login;
 import com.project.back_end.models.Doctor;
-import com.project.back_end.services.Service;
+import com.project.back_end.services.AppService;
 import com.project.back_end.services.DoctorService;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
@@ -20,10 +19,10 @@ import org.springframework.web.bind.annotation.*;
 public class DoctorController {
 
     private final DoctorService doctorService;
-    private final Service service;
+    private final AppService service;
 
     @Autowired
-    public DoctorController(DoctorService doctorService, Service service) {
+    public DoctorController(DoctorService doctorService, AppService service) {
         this.doctorService = doctorService;
         this.service = service;
     }
@@ -153,27 +152,3 @@ public class DoctorController {
         return ResponseEntity.status(HttpStatus.OK).body(map);
     }
 }
-
-
-
-
-//    /**Note: another way to filter() function...
-//     * Filter doctors by name, time, and speciality
-//     */
-//    @GetMapping("/filter/{name}/{time}/{speciality}")
-//    public ResponseEntity<Map<String, Object>> filter(
-//            @PathVariable String name,
-//            @PathVariable String time,
-//            @PathVariable String speciality) {
-//
-//        Map<String, Object> response = new HashMap<>();
-//
-//        response.put(
-//                "doctors",
-//                service.filterDoctors(name, time, speciality)
-//        );
-//
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
-
-
