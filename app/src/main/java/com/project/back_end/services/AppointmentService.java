@@ -17,19 +17,20 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
-@org.springframework.stereotype.Service
+@Service
 public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
-    private final Service service;
+    private final AppService service;
     private final TokenService tokenService;
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
 
     public AppointmentService(
             AppointmentRepository appointmentRepository,
-            Service service,
+            AppService service,
             TokenService tokenService,
             PatientRepository patientRepository,
             DoctorRepository doctorRepository

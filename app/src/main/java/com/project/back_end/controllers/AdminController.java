@@ -2,7 +2,7 @@ package com.project.back_end.controllers;
 
 import java.util.Map;
 
-import com.project.back_end.services.Service;
+import com.project.back_end.services.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +18,10 @@ import com.project.back_end.models.Admin;
 @RequestMapping("${api.path}" + "admin")
 public class AdminController {
 
-    private final Service service;
+    private final AppService service;
 
     @Autowired
-    public AdminController(Service service) {
+    public AdminController(AppService service) {
         this.service = service;
     }
 

@@ -1,7 +1,7 @@
 package com.project.back_end.controllers;
 
 import com.project.back_end.models.Appointment;
-import com.project.back_end.services.Service;
+import com.project.back_end.services.AppService;
 import com.project.back_end.services.AppointmentService;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.*;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
-    private final Service service;
+    private final AppService service;
 
     @Autowired
     public AppointmentController(
             AppointmentService appointmentService,
-            Service service
+            AppService service
     ) {
         this.appointmentService = appointmentService;
         this.service = service;

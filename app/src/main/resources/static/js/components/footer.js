@@ -37,6 +37,5 @@ function renderFooter() {
   `;
 }
 
-// 4. Call the function when the file loads. // //or, Call the function to render the footer
-
+// 4. Call the function when the file loads
 renderFooter();

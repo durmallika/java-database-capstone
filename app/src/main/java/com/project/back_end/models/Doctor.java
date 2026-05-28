@@ -102,4 +102,3 @@ public class Doctor {
         this.availableTimes = availableTimes;
     }
 }
-
