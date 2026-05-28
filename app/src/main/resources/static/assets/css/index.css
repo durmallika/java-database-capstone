@@ -1,68 +1,120 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-  font-family: 'Roboto', sans-serif;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction:column ;
-  min-height: 100vh;
-}
-
-h2 {
-  font-size: 48px;
-  margin-bottom: 50px;
-  color: #003e3e;
-  font-weight: bold;
-  font-family: 'Alegreya', 'Roboto', sans-serif;
-}
-
-.main-content {
-  flex-grow: 1;
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  background-image: url('../images/defineRole/defineRole.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-.button-group {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-button {
-  background-color: #015c5d;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 20px;
-  margin-top: 10px;
-  width: 200px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #A62B1F;
-}
-
-.dashboard-btn {
-  background-color: #015c5d;
-}
-
-.dashboard-btn:hover {
-  background-color: #003e3e;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #222;
+  }
+  
+  .container {
+    width: 100%;
+    min-height: 100vh;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  
+  .role-selection-section {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .role-selection-section h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  .role-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .role-btn {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .role-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  .admin-btn {
+    background: #1e3a8a;
+    color: white;
+  }
+  
+  .patient-btn {
+    background: #059669;
+    color: white;
+  }
+  
+  .doctor-btn {
+    background: #dc2626;
+    color: white;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .hidden {
+    display: none;
+  }

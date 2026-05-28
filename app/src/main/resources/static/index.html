@@ -1,49 +1,66 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Select Role</title>
-  <link rel="icon" href="../assets/images/logo/Logo.png" type="image/png" />
-  <link rel="stylesheet" href="../assets/css/index.css" />
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <script src="../js/util.js" defer></script>
-  <script src="../js/render.js" defer></script>
-  <script src="../js/components/header.js" defer></script>
-  <script src="../js/components/footer.js" defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Role</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logo/Logo.png" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/index.css" />
+
+    <!-- Shared Scripts -->
+    <script src="../js/util.js" defer></script>
+    <script src="../js/render.js" defer></script>
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
 </head>
 <body>
 <div class="container">
-  <!-- Header Placeholder -->
-  <div id="header"></div>
+    <div class="wrapper">
 
-  <!-- Main Content -->
-  <main>
-    <h1>Select Your Role</h1>
-    <div class="role-buttons">
-      <button id="adminBtn">Admin</button>
-      <button id="patientBtn">Patient</button>
-      <button id="doctorBtn">Doctor</button>
+        <!-- Header Placeholder -->
+        <div id="header"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="role-selection-section">
+                <h1>Select Your Role</h1>
+                <p class="subtitle">Choose how you want to continue</p>
+
+                <div class="role-buttons">
+                    <button id="adminBtn" class="role-btn admin-btn">
+                        Admin
+                    </button>
+
+                    <button id="patientBtn" class="role-btn patient-btn">
+                        Patient
+                    </button>
+
+                    <button id="doctorBtn" class="role-btn doctor-btn">
+                        Doctor
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer Placeholder -->
+        <div id="footer"></div>
     </div>
-  </main>
-
-  <!-- Footer Placeholder -->
-  <div id="footer"></div>
-</div>
 </div>
 
-<!-- Modal Structure -->
-<div id="modal" class="modal hidden">
-  <div class="modal-content">
-    <span class="close-button" id="closeModal">&times;</span>
-    <div id="modal-body">
-      <!-- Dynamic content will be injected here -->
+<!-- Modal -->
+<div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal-container">
+        <button id="closeModal" class="close-modal">&times;</button>
+        <div id="modalContent"></div>
     </div>
-  </div>
 </div>
 
-<!-- Page-Specific Logic -->
+<!-- Page Logic -->
 <script type="module" src="../js/index.js" defer></script>
 </body>
 </html>
