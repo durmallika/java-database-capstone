@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Select Role</title>
+    <title>title</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="../assets/images/logo/Logo.png" />
@@ -12,35 +12,58 @@
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/index.css" />
 
+    <!-- this 3-lines added for roboto font at index-css -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <!-- Shared Scripts -->
     <script src="../js/util.js" defer></script>
     <script src="../js/render.js" defer></script>
     <script src="../js/components/header.js" defer></script>
     <script src="../js/components/footer.js" defer></script>
 </head>
+
 <body>
+
 <div class="container">
     <div class="wrapper">
 
         <!-- Header Placeholder -->
         <div id="header"></div>
 
+
         <!-- Main Content -->
         <main class="main-content">
             <section class="role-selection-section">
-                <h1>Select Your Role</h1>
-                <p class="subtitle">Choose how you want to continue</p>
+                <h1>Select Your <span>Role</span></h1>
 
                 <div class="role-buttons">
-                    <button id="adminBtn" class="role-btn admin-btn">
-                        Admin
-                    </button>
 
-                    <button id="patientBtn" class="role-btn patient-btn">
+                    <!-- <button id="adminBtn" 
+                    class="role-btn admin-btn"
+                    onclick="selectRole('admin')">
+                        Admin
+                    </button> -->
+
+                    <button id="adminBtn"
+                    class="role-btn admin-btn"
+                    onclick="window.location.href='../templates/admin/adminDashboard.html'">
+                    Admin
+                </button>
+
+
+                    
+
+                    <button id="patientBtn" 
+                    class="role-btn patient-btn"
+                    onclick="selectRole('patient')">
                         Patient
                     </button>
 
-                    <button id="doctorBtn" class="role-btn doctor-btn">
+                    <button id="doctorBtn" 
+                    class="role-btn doctor-btn"
+                    onclick="selectRole('doctor')">
                         Doctor
                     </button>
                 </div>
@@ -53,14 +76,36 @@
 </div>
 
 <!-- Modal -->
-<div id="modalOverlay" class="modal-overlay hidden">
+<!-- <div id="modalOverlay" class="modal-overlay hidden">
     <div class="modal-container">
         <button id="closeModal" class="close-modal">&times;</button>
         <div id="modalContent"></div>
     </div>
-</div>
+</div> -->
+
+
+    <!-- added /changed here..below:: -->
+
+    <button id="openModal">View Details</button>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button id="closeModal" class="close">&times;</button>
+    
+            <div id="modal-body">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+
 
 <!-- Page Logic -->
-<script type="module" src="../js/index.js" defer></script>
+<!-- <script type="module" src="../js/index.js" defer></script> -->
+
+<!-- this below added from index-js file -steps -->
+<script type="module" src="js/services/index.js" defer></script>
+
 </body>
 </html>

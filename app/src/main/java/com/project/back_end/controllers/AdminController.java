@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.project.back_end.models.Admin;
 
+
 @RestController
 @RequestMapping("${api.path}" + "admin")
 public class AdminController {
@@ -37,10 +38,12 @@ public class AdminController {
     {
         Map<String, String> map=service.validateToken(token,"admin").getBody();
         if(map==null)
+        // if(map != null) 
         {
             return "admin/adminDashboard";
         }
         return "redirect:http://localhost:8080/";
+    //    return "redirect:http://localhost:8080/admin/dashboard/<token>";
 
     }
 }
