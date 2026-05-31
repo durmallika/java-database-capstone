@@ -1,13 +1,20 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Reset & Base Styles */
 
-html, body {
-  height: 100%;
-  font-family: Arial, sans-serif;
-}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7f8;
+    color: #333;
+  }
+
+/* Layout */
 
 .wrapper {
   display: flex;
@@ -15,31 +22,199 @@ html, body {
   min-height: 100vh;
 }
 
-.main-content {
+/* .main-content {
   flex-grow: 1;
   padding: 30px;
   text-align: center;
+  background-color: #f4fdfd; 
+}*/
+
+  .main-content {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    text-align: center;
   background-color: #f4fdfd;
-}
+  }
 
-.searchBar {
-  padding: 10px 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  width: 60%;
-  max-width: 500px;
-}
-
+/* search & filters */
+.search-section,
 .filter-section {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
+  gap: 1rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.today-btn,
+#searchBar,
+#appointmentDate {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+}
+
+#searchBar {
+  width: 100%;
+  max-width: 400px;
+}
+
+#searchBar:focus,
+#appointmentDate:focus {
+  border-color: #015c5d;
+  box-shadow: 0 0 5px rgba(1, 92, 93, 0.25);
+}
+
+/* Button hover: background color shift (#015c5d → #017d7e) */
+/* Buttons */
+
+.button,
+.prescription-btn {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #015c5d;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.button:hover,
+.prescription-btn:hover {
+  background-color: #017d7e;
+}
+
+
+/* Table Styling */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  thead {
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
+  }
+  
+  thead th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+  }
+  
+  tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  /* Alternating Rows */
+  tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+  
+  /* Hover Effect */
+  tbody tr:hover {
+    background-color: #e8f5f5;
+    transition: background-color 0.2s ease;
+  }
+  
+ 
+  /* Prescription Button */
+  .prescription-btn {
+    font-size: 0.9rem;
+  }
+  
+  .prescription-btn:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+  }
+  
+
+  /* No Patient Record */
+  .noPatientRecord {
+    text-align: center;
+    color: #808080;
+    font-style: italic;
+    padding: 1.5rem;
+  }
+
+
+  /* Responsive Design */
+
+  @media (max-width: 768px) {
+    .main-content {
+      padding: 1rem;
+    }
+  
+    .search-section,
+    .filter-section {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    #searchBar,
+    #appointmentDate,
+    .button {
+      width: 100%;
+    }
+  
+    table {
+      font-size: 0.9rem;
+    }
+  
+    thead th,
+    tbody td {
+      padding: 0.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .main-content {
+      padding: 0.75rem;
+    }
+  
+    table {
+      font-size: 0.8rem;
+    }
+  
+    thead th,
+    tbody td {
+      padding: 0.5rem;
+    }
+  
+    .button,
+    .prescription-btn {
+      font-size: 0.85rem;
+      padding: 0.65rem;
+    }
+  }
+
+
+
+
+
+/* /////////another style... */ 
+
+/* buttons */
+/* .today-btn,
 .adminBtn {
   background-color: #015c5d;
   color: white;
@@ -162,4 +337,4 @@ tbody tr:hover {
   .today-btn {
     width: 100%;
   }
-}
+} */
