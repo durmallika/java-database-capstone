@@ -3,20 +3,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Doctor Dashboard</title>
-  <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DoctorDashboard</title>
 
-  <!-- <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}" /> -->
-  <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}" />
-  <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
 
-  <script type="module" th:src="@{/js/render.js}" defer></script>
-  <script type="module" th:src="@{/js/util.js}" defer></script>
-  <script type="module" th:src="@{/js/components/header.js}" defer></script>
-  <script type="module" th:src="@{/js/components/footer.js}" defer></script>
-  <script type="module" th:src="@{/js/components/patientRows.js}" defer></script>
-  <script type="module" th:src="@{/js/services/patientServices.js}" defer></script>
-  <script type="module" th:src="@{/js/doctorDashboard.js}" defer></script>
+  <!-- Favicon -->
+  <!-- <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" /> -->
+  <link rel="icon" type="image/png" href="../assets/images/logo/Logo.png" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../assets/css/adminDashboard.css" />
+  <link rel="stylesheet" href="../assets/css/doctorDashboard.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+ <!--utility js- scripts -->
+   <script src="./js/util.js" defer></script>
+   <script src="./js/render.js" defer></script>
+
+<!-- components -->
+    <script src="../js/components/header.js" defer></script>
+    <script src="../js/components/footer.js" defer></script>
+    <script src="../js/components/patientRows.js" defer></script>
+   
+    <!-- Services and main logic -->
+    
+    <!-- Services -->
+    <script src="../services/patientServices.js"></script>
+
+    <!-- Main Logic -->
+    <script src="../scripts/doctorDashboard.js"></script>
+
+
 </head>
 
 <body onload="renderContent()">
@@ -24,29 +41,45 @@
   <div class="wrapper">
     <div id="header"></div>
 
-    <div class="main-content">
+    <!-- Main dashboard -->
+    <!-- <div class="main-content"> -->
+      
+        <main class="main-content">
+        <!-- Search Section -->
+    <div class="search-section">
       <input type="text" id="searchBar" class="searchBar" placeholder="Search patients..." />
+    </div>
 
       <div class="filter-section">
         <button id="todayButton" class="adminBtn">Today’s Appointments</button>
-        <input type="date" id="datePicker" class="datePicker" />
-      </div>
-      <table id="patientTable" class="patient-table">
-        <thead>
-        <tr>
-          <th>Patient ID</th>
-          <th>Name</th>
-          <th>Phone No.</th>
-          <th>Email</th>
-          <th>Prescription</th>
-        </tr>
-        </thead>
-        <tbody id="patientTableBody">
-        <!-- Rows inserted dynamically by JS -->
+        <input type="date" id="appointmentDate"/>
+
+        <!-- <input type="date" id="datePicker" class="datePicker" /> -->
+      
+        
+    <!-- Patient Records Table -->
+    <div class="table-container">
+        <table id="patientTable">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Prescription</th>
+                </tr>
+            </thead>
+            <tbody id="patientTableBody">
+
+        <!-- patient-Rows inserted dynamically by JS -->
         </tbody>
+
       </table>
     </div>
 
+</main>
+
+  <!-- Dynamic Footer -->
     <div id="footer"></div>
   </div>
 </div>

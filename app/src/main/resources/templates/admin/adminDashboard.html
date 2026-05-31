@@ -7,7 +7,7 @@
     <title>Admin Dashboard</title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
+    <!-- <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" /> -->
 
     <!-- Stylesheets -->
     <link rel="stylesheet" th:href="@{/assets/css/style.css}" />
@@ -39,17 +39,17 @@
                 <input
                         type="text"
                         id="searchBar"
-                        placeholder="Search doctors or specialties"
+                        placeholder="Search by doctor name"
                 />
 
                 <select id="timeFilter">
-                    <option value="">Filter by Time</option>
+                    <option value="">Sorting by time</option>
                     <option value="AM">AM</option>
                     <option value="PM">PM</option>
                 </select>
 
                 <select id="specialtyFilter">
-                    <option value="">Filter by Specialty</option>
+                    <option value="">Filtering by specialty</option>
                     <option value="Cardiologist">Cardiologist</option>
                     <option value="Dentist">Dentist</option>
                     <option value="Neurologist">Neurologist</option>
@@ -57,27 +57,42 @@
                 </select>
             </section>
 
-            <!-- Dynamic Content -->
+            <!-- Dynamic Content: dynamically inject list of doctors-->
             <section class="dashboard-content">
                 <div id="content"></div>
             </section>
         </main>
 
-        <!-- Footer -->
+        <!-- dynamic Footer -->
         <div id="footer"></div>
     </div>
 </div>
 
-<!-- Modal -->
-<div id="modal" class="modal hidden">
+<!-- Modal for adding doctor /a hidden modal container --->
+
+<div id="modal" class="modal">
+    <span id="closeModal" class="close">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+  
+
+<!-- Page Scripts -->
+
+<script type="module" src="../js/services/adminDashboard.js" defer></script>
+<script type="module" src="../js/components/doctorCard.js" defer></script>
+
+
+<!-- other option -->
+<!-- <div id="modal" class="modal hidden">
     <div class="modal-content">
         <button class="close-btn" id="closeModal">&times;</button>
         <div id="modal-body"></div>
     </div>
-</div>
+</div> -->
 
-<!-- Page Scripts -->
-<script type="module" th:src="@{/js/adminDashboard.js}" defer></script>
-<script type="module" th:src="@{/js/doctorCard.js}" defer></script>
+<!-- <script type="module" th:src="@{/js/adminDashboard.js}" defer></script>
+<script type="module" th:src="@{/js/doctorCard.js}" defer></script> -->
+
+
 </body>
 </html>
