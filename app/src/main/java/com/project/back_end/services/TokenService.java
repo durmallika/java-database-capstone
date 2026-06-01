@@ -80,3 +80,22 @@ public class TokenService {
         }
     }
 }
+
+
+/*
+Notes::added by me
+
+Inside TokenService:
+The token signature is verified.
+The email/username is extracted.
+The corresponding repository is queried.
+true is returned if the user exists and the token is valid.
+If valid:
+Returns the Thymeleaf view:
+admin/adminDashboard
+doctor/doctorDashboard
+If invalid:
+Redirects to:
+http://localhost:8080
+
+ */

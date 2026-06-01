@@ -1,4 +1,8 @@
 
+/* A CSS file in src/main/resources/static/css/style.css 
+will be accessible at http://localhost:8080/css/style.css. */
+
+
 .header {
     display: flex;
     justify-content: space-between;
