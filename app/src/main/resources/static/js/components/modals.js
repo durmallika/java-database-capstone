@@ -1,5 +1,7 @@
 // modals.js
 export function openModal(type) {
+    // const modal = document.getElementById(modalId); //i added these 2-lines,,
+    const modal = document.getElementById(modal);
   let modalContent = '';
   if (type === 'addDoctor') {
     modalContent = `
