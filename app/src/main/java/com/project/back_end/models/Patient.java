@@ -32,9 +32,13 @@ public class Patient {
     private String address;
 
     // Constructors
-    public Patient() {}
 
-    public Patient(String name, String email, String password, String phone, String address) {
+    public Patient() {
+        super();
+    }
+
+    public Patient(Long id, String name, String email, String password, String phone, String address) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -43,6 +47,8 @@ public class Patient {
     }
 
     // Getters and Setters
+
+
     public Long getId() {
         return id;
     }

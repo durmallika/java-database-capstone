@@ -19,15 +19,16 @@ public class Admin {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    // Constructors
-    public Admin() {}
+    public Admin() {
+        super();
+    }
 
-    public Admin(String username, String password) {
+    public Admin(Long id, String username, String password) {
+        this.id = id;
         this.username = username;
         this.password = password;
     }
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -51,4 +52,5 @@ public class Admin {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
