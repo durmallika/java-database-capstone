@@ -32,16 +32,12 @@ public class Prescription {
     private String doctorNotes;
 
     // Constructors
-    public Prescription() {}
 
-    public Prescription(String patientName, Long appointmentId, String medication, String dosage) {
-        this.patientName = patientName;
-        this.appointmentId = appointmentId;
-        this.medication = medication;
-        this.dosage = dosage;
+    public Prescription() {
+        super();
     }
 
-    // Getters and Setters
+
     public String getId() {
         return id;
     }

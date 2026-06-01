@@ -38,10 +38,15 @@ public class Doctor {
     @ElementCollection
     private List<String> availableTimes;
 
-    // Constructors
-    public Doctor() {}
 
-    public Doctor(String name, String specialty, String email, String password, String phone, List<String> availableTimes) {
+    // Constructors
+
+    public Doctor() {
+        super();
+    }
+
+    public Doctor(Long id, String name, String specialty, String email, String password, String phone, List<String> availableTimes) {
+        this.id = id;
         this.name = name;
         this.specialty = specialty;
         this.email = email;
@@ -51,6 +56,8 @@ public class Doctor {
     }
 
     // Getters and Setters
+
+
     public Long getId() {
         return id;
     }
@@ -66,6 +73,11 @@ public class Doctor {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getSpecialty() {
+        return specialty;
+    }
+
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
     }

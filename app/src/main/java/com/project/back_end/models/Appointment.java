@@ -32,9 +32,12 @@ public class Appointment {
     private int status; // 0 = Scheduled, 1 = Completed
 
     // Constructors
-    public Appointment() {}
+    public Appointment() {
+        super();
+    }
 
-    public Appointment(Doctor doctor, Patient patient, LocalDateTime appointmentTime, int status) {
+    public Appointment(Long id, Doctor doctor, Patient patient, LocalDateTime appointmentTime, int status) {
+        this.id = id;
         this.doctor = doctor;
         this.patient = patient;
         this.appointmentTime = appointmentTime;
@@ -42,6 +45,7 @@ public class Appointment {
     }
 
     // Getters and Setters
+
     public Long getId() {
         return id;
     }
@@ -81,6 +85,7 @@ public class Appointment {
     public void setStatus(int status) {
         this.status = status;
     }
+
 
     // Helper Methods
     @Transient
